@@ -6,11 +6,6 @@ metadata:
     app: flask1
 spec:
   replicas: 3
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxUnavailable: 25%
-      maxSurge: 0
   selector:
     matchLabels:
       app: flask1
@@ -21,11 +16,7 @@ spec:
     spec:
       containers:
       - name: flask1
-        image: 172.17.0.1:5000/startupv2:1
+        image: 172.17.0.1:5000/python_with_flask:{{VERSION}}
         ports:
         - containerPort: 5000
-        readinessProbe:
-          httpGet:
-             path: /startupv2
-             port: 5000
 
